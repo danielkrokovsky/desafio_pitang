@@ -23,6 +23,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @Entity
+@ToString
 @EqualsAndHashCode
 public class Usuario implements Serializable{
 	

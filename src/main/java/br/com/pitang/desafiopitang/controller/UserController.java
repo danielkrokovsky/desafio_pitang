@@ -24,10 +24,10 @@ public class UserController{
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public void consultar() {
+	public Iterable<Usuario> consultar() {
 		
 		Iterable<Usuario> findAll = repository.findAll();
-		
-		System.out.println(findAll);
+		System.out.println("ooiohoiboiboiboiboiboibiob");
+		return findAll;
 	}
 }
