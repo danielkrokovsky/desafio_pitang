@@ -32,8 +32,7 @@ public class RestResponseEntityExceptionHandler
 		String value = "";
 		
 		if(constraintName) {
-			value = env.getProperty("msg.email.cadastrado");	
-				
+			value = env.getProperty("msg.email.cadastrado");				
 		}else {
 			value = env.getProperty("msg.login.cadastrado");			
 		}

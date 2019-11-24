@@ -7,7 +7,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import br.com.pitang.desafiopitang.model.Usuario;
 
-//@RepositoryRestResource(collectionResourceRel = "users", path = "users")
 public interface UserRepository extends PagingAndSortingRepository<Usuario, Long> {
 	
 	@Query("SELECT u FROM Usuario u WHERE u.email = ?1")

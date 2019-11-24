@@ -19,48 +19,48 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.pitang.desafiopitang.model.Usuario;
-import br.com.pitang.desafiopitang.repository.UserRepository;
+import br.com.pitang.desafiopitang.model.Car;
+import br.com.pitang.desafiopitang.repository.CarRepository;
 
 @RestController
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/cars/")
+public class CarController {
 
 	@Autowired
-	private UserRepository repository;
+	private CarRepository repository;
 
 	@PostMapping()
-	public ResponseEntity<Usuario> save(@Valid @RequestBody Usuario user) {
+	public ResponseEntity<Car> save(@Valid @RequestBody Car car) {
 		
-		Usuario user2 = this.repository.save(user);
+		Car car2 = this.repository.save(car);
 		
-		return new ResponseEntity<Usuario>(user2, HttpStatus.ACCEPTED);
+		return new ResponseEntity<Car>(car2, HttpStatus.ACCEPTED);
 	}
 	
 	@PutMapping()
-	public ResponseEntity<Usuario> update(@Valid @RequestBody Usuario user) {
+	public ResponseEntity<Car> update(@Valid @RequestBody Car car) {
 
-		Usuario user2 = this.repository.save(user);
+		Car car2 = this.repository.save(car);
 		
-		return new ResponseEntity<Usuario>(user2, HttpStatus.ACCEPTED);
+		return new ResponseEntity<Car>(car2, HttpStatus.ACCEPTED);
 	}
 
 	@GetMapping()
-	public ResponseEntity<List<Usuario>> find() {
+	public ResponseEntity<List<Car>> find() {
 
-		Iterable<Usuario> iterable = repository.findAll();
+		Iterable<Car> iterable = repository.findAll();
 
-		List<Usuario> result = StreamSupport.stream(iterable.spliterator(), false).collect(Collectors.toList());
+		List<Car> result = StreamSupport.stream(iterable.spliterator(), false).collect(Collectors.toList());
 
-		return new ResponseEntity<List<Usuario>>(result, HttpStatus.OK);
+		return new ResponseEntity<List<Car>>(result, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> findById(@PathVariable Long id) {
+	public ResponseEntity<Car> findById(@PathVariable Long id) {
 
-		Optional<Usuario> user = repository.findById(id);
+		Optional<Car> car = repository.findById(id);
 
-		return new ResponseEntity<Usuario>(user.get(), HttpStatus.OK);
+		return new ResponseEntity<Car>(car.get(), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
