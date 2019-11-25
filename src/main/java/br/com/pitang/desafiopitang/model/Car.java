@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -31,9 +32,17 @@ public class Car implements Serializable{
     @Column(name = "id", nullable = false, precision = 0)
     private Long id;
     
+    @NotNull(message = "Missing fields")
 	private int year;
+	
+	@NotNull(message = "Missing fields")
+	@Column(unique=true)
 	private String licensePlate;
+	
+	@NotNull(message = "Missing fields")
 	private String model;
+	
+	@NotNull(message = "Missing fields")
 	private String color;
 	
 	@ManyToOne

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import br.com.pitang.desafiopitang.exception.LicensePlateException;
 import br.com.pitang.desafiopitang.model.Car;
 import br.com.pitang.desafiopitang.repository.CarRepository;
 
@@ -53,11 +54,16 @@ public class CarController {
 
 
 	@PostMapping()
-	public ResponseEntity<Car> save(@Valid @RequestBody Car car) {
+	public ResponseEntity<Car> save(@RequestBody Car car) {
 		
-		Car car2 = this.repository.save(car);
+		Car car2 = this.repository.findByPlate(car.getLicensePlate());
 		
-		return new ResponseEntity<Car>(car2, HttpStatus.ACCEPTED);
+		if(car2 != null) 
+			throw new LicensePlateException("");
+		
+		Car car3 = this.repository.save(car);
+		
+		return new ResponseEntity<Car>(car3, HttpStatus.ACCEPTED);
 	}
 	
 	@PutMapping()

@@ -35,5 +35,3 @@ alter table usuario add constraint UK_5171l57faosmj8myawaucatdw unique (email);
 alter table usuario add constraint UK_863n1y3x0jalatoir4325ehal unique (username);
 
 alter table car add constraint FKc6mxeqb3n7tojne4o84hiykdy foreign key (usuario_id) references usuario;
-
-alter table car add constraint UK_7ew84l68jbcgm9uvsqtbfr1xm unique (license_plate)

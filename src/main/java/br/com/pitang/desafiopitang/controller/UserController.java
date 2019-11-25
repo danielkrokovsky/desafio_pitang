@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import br.com.pitang.desafiopitang.exception.UsuarioEmailException;
+import br.com.pitang.desafiopitang.exception.UsuarioLoginException;
 import br.com.pitang.desafiopitang.model.Usuario;
 import br.com.pitang.desafiopitang.repository.UserRepository;
 
@@ -60,14 +61,22 @@ public class UserController {
 	@PostMapping()
 	public ResponseEntity<Usuario> save(@Valid @RequestBody Usuario user) {
 		
+		Usuario u1 = this.repository.findByLogin(user.getUsername());
+		Usuario u2 = this.repository.findByEmail(user.getEmail());
+		
+		if(u1 != null) {
+			throw new UsuarioLoginException();
+		}
+		
+		if(u2 != null) {
+			throw new UsuarioEmailException();
+		}
+		
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		Usuario user2 = new Usuario();
 		
-		BeanUtils.copyProperties(user, user2);
+		this.repository.save(user);
 		
-		this.repository.save(user2);
-		
-		return new ResponseEntity<Usuario>(user2, HttpStatus.ACCEPTED);
+		return new ResponseEntity<Usuario>(user, HttpStatus.ACCEPTED);
 	}
 	
 	@PutMapping()
