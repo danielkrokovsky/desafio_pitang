@@ -24,6 +24,11 @@ public class CustomUserDetailService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
 		Usuario account = repository.findByLogin(username);
+		
+		if(account == null) {
+			
+			throw new UsernameNotFoundException("");
+		}
 
         List<GrantedAuthority> authorityListAdmin = AuthorityUtils.createAuthorityList("ROLE_USER", "ROLE_ADMIN");
                

@@ -31,7 +31,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()).and().csrf()
-				.disable().authorizeRequests().antMatchers(HttpMethod.GET, SecurityConstants.SIGN_UP_URL).permitAll()
+				.disable().authorizeRequests()
+				.antMatchers(HttpMethod.GET, SecurityConstants.SIGN_UP_URL).permitAll()
 				.antMatchers("/users**")
 				.permitAll()
 				.antMatchers("/signin")
@@ -49,14 +50,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void ConfigureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-
-		/*
-		 * String encoded = new BCryptPasswordEncoder().encode("123456");
-		 * 
-		 * auth.inMemoryAuthentication() .passwordEncoder(new BCryptPasswordEncoder())
-		 * .withUser("daniel").password(encoded).roles("USER") .and()
-		 * .withUser("admin").password(encoded).roles("USER", "ADMIN");
-		 */
 
 		auth.userDetailsService(customUserDetailService).passwordEncoder(bCryptPasswordEncoder());
 	}

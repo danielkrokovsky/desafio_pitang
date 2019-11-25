@@ -18,6 +18,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -73,7 +74,7 @@ public class Usuario implements Serializable, UserDetails{
 	 private byte[] foto;
 	
 	@Transient
-	private List<GrantedAuthority> authorities;
+	private List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_USER", "ROLE_ADMIN");
     
 	@Override
 	public boolean isAccountNonExpired() {
