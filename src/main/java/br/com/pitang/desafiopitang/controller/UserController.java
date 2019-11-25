@@ -7,9 +7,12 @@ import java.util.stream.StreamSupport;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,11 +31,19 @@ public class UserController {
 
 	@Autowired
 	private UserRepository repository;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@PostMapping()
 	public ResponseEntity<Usuario> save(@Valid @RequestBody Usuario user) {
 		
-		Usuario user2 = this.repository.save(user);
+		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		Usuario user2 = new Usuario();
+		
+		BeanUtils.copyProperties(user, user2);
+		
+		this.repository.save(user2);
 		
 		return new ResponseEntity<Usuario>(user2, HttpStatus.ACCEPTED);
 	}
@@ -63,7 +74,8 @@ public class UserController {
 		return new ResponseEntity<Usuario>(user.get(), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping(path = "/{id}")
+	@CrossOrigin(origins = "http://localhost:8080/api/**")
 	public ResponseEntity<?> removeById(@PathVariable Long id) {
 
 		repository.deleteById(id);

@@ -12,7 +12,9 @@ public interface UserRepository extends PagingAndSortingRepository<Usuario, Long
 	@Query("SELECT u FROM Usuario u WHERE u.email = ?1")
 	List<Usuario> findByEmail(String email);
 	
-	@Query("SELECT u FROM Usuario u WHERE u.login = ?1")
-	List<Usuario> findByLogin(String login);
+	@Query("SELECT u FROM Usuario u WHERE u.username = ?1")
+	Usuario findByLogin(String login);
+	
+	
 
 }
