@@ -5,7 +5,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.com.pitang.desafiopitang.model.Usuario;
 import br.com.pitang.desafiopitang.repository.UserRepository;
@@ -34,6 +38,24 @@ public class UserController {
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	
+	@PostMapping(value = "{id}/upload", headers = "Content-Type= multipart/form-data")
+	public ResponseEntity<?> anexoUpload(HttpServletRequest request, @NotNull @RequestParam("files") MultipartFile[] files,
+			@PathVariable(name = "id") Long id) throws Exception {
+		
+		Optional<Usuario> userOpt = repository.findById(id);
+		
+		if(userOpt.isPresent()) {
+			
+			byte [] byteArr = files[0].getBytes();
+			Usuario user = userOpt.get();
+			user.setFoto(byteArr);
+			repository.save(user);
+		}
+		
+		return ResponseEntity.ok().body(null);
+	}
 
 	@PostMapping()
 	public ResponseEntity<Usuario> save(@Valid @RequestBody Usuario user) {

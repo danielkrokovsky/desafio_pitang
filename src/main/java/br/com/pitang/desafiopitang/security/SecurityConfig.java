@@ -32,7 +32,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()).and().csrf()
 				.disable().authorizeRequests().antMatchers(HttpMethod.GET, SecurityConstants.SIGN_UP_URL).permitAll()
-				.antMatchers("/users**").hasRole("USER").antMatchers("/cars**").hasRole("USER").and()
+				.antMatchers("/users**")
+				.permitAll()
+				.antMatchers("/signin")
+				.permitAll()
+				.antMatchers("/cars**").hasRole("USER").and()
 				.addFilter(new JWTAuthenticationFilter(authenticationManager()))
 				.addFilter(new JWTAuthorizationFilter(authenticationManager(), customUserDetailService));
 	}

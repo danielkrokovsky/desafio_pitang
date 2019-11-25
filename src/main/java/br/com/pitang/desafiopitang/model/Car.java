@@ -8,10 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -40,6 +40,9 @@ public class Car implements Serializable{
 	@JoinColumn(name="usuario_id")
 	@JsonBackReference
 	private Usuario usuario;
+	
+	 @Lob
+	 private byte[] foto;
 
 	public Long getId() {
 		return id;

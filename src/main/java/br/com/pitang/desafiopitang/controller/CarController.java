@@ -5,7 +5,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +19,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.com.pitang.desafiopitang.model.Car;
 import br.com.pitang.desafiopitang.repository.CarRepository;
@@ -28,6 +32,25 @@ public class CarController {
 
 	@Autowired
 	private CarRepository repository;
+	
+
+	@PostMapping(value = "{id}/upload", headers = "Content-Type= multipart/form-data")
+	public ResponseEntity<?> anexoUpload(HttpServletRequest request, @NotNull @RequestParam("files") MultipartFile[] files,
+			@PathVariable(name = "id") Long id) throws Exception {
+		
+		Optional<Car> carOpt = repository.findById(id);
+		
+		if(carOpt.isPresent()) {
+			
+			byte [] byteArr = files[0].getBytes();
+			Car car = carOpt.get();
+			car.setFoto(byteArr);
+			repository.save(car);
+		}
+		
+		return ResponseEntity.ok().body(null);
+	}
+
 
 	@PostMapping()
 	public ResponseEntity<Car> save(@Valid @RequestBody Car car) {

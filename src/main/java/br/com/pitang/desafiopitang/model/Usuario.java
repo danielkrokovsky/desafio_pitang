@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
@@ -19,8 +20,6 @@ import javax.validation.constraints.NotNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
@@ -69,6 +68,9 @@ public class Usuario implements Serializable, UserDetails{
     @JsonManagedReference
 	@OneToMany(mappedBy = "usuario", targetEntity = Car.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Car> cars;
+    
+	 @Lob
+	 private byte[] foto;
 	
 	@Transient
 	private List<GrantedAuthority> authorities;
