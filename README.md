@@ -6,7 +6,9 @@ ESTÓRIAS DE USUÁRIO
 
     <blockquote>Criar os Endpoints para a api de Usuário</blockquote>
 
-            1.1. /api/me - Retornar as informações do usuário logado (firstName, lastName, email, birthday, login,phone, cars) + createdAt (data da criação do usuário) + lastLogin (data da última vezque o usuário realizou login).
+            1.1. /api/me - Retornar as informações do usuário logado (firstName, lastName, email, birthday,
+                 login,phone, cars) + createdAt (data da criação do usuário) + lastLogin (data da última vez 
+                que o usuário realizou login).
             <br>1.2. /api/cars Listar todos os carros do usuário logado 
             <br>1.3. /api/cars Cadastrar um novo carro para o usuário logado 
             <br>1.4. /api/cars/{id} Buscar um carro do usuário logado pelo id 
