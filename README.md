@@ -48,3 +48,5 @@ ESTÓRIAS DE USUÁRIO
 4. [x] - Criar um repositório público git (Github)<br>
 
 5. [x] - Criação de rota para upload da fotografia do usuário e do carro<br>
+
+6. [x] - Senha deve ser criptografada
