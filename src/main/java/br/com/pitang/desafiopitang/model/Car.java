@@ -2,8 +2,10 @@ package br.com.pitang.desafiopitang.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,7 +14,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -50,6 +52,8 @@ public class Car implements Serializable{
 	private Usuario usuario;
 	
 	 @Lob
+	 @Basic(fetch=FetchType.LAZY)
+	 @JsonIgnore
 	 private byte[] foto;
 
 	public Long getId() {

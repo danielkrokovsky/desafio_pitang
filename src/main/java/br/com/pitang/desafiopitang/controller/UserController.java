@@ -79,12 +79,12 @@ public class UserController {
 		return new ResponseEntity<Usuario>(user, HttpStatus.ACCEPTED);
 	}
 	
-	@PutMapping()
-	public ResponseEntity<Usuario> update(@Valid @RequestBody Usuario user) {
+	@PutMapping("/{id}")
+	public ResponseEntity<Usuario> update(@PathVariable Long id,@Valid @RequestBody Usuario user) {
 
 		Usuario user2 = this.repository.save(user);
 		
-		return new ResponseEntity<Usuario>(user2, HttpStatus.ACCEPTED);
+		return new ResponseEntity<Usuario>(user2, HttpStatus.OK);
 	}
 
 	@GetMapping()
