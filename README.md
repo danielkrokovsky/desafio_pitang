@@ -2,4 +2,23 @@
 
 ESTÓRIAS DE USUÁRIO
 
-1. [x]
+1. [x] - API de Usuário
+.     Tratamento de Erros
+            1.1. Login inexistente ou senha inválida: retornar um erro com a mensagem “Invalid login or password”;
+            1.2. E-mail já existente: retornar um erro com a mensagem “Email already exists”;
+            1.3. Login já existente: retornar um erro com a mensagem “Login already exists”;
+            1.4. Campos inválidos: retornar um erro com a mensagem “Invalid fields”;
+            1.5. Campos não preenchidos: retornar um erro com a mensagem “Missing fields.
+
+2. [x] - API de Carros
+2. [x] - API de Carros
+2. [x] - API de Carros
+2. [x] - API de Carros
+2. [x] - API de Carros
+2. [x] - API de Carros
+2. [x] - API de Carros
+2. [x] - API de Carros
+2. [x] - API de Carros
+2. [x] - API de Carros
+2. [x] - API de Carros
+2. [x] - API de Carros
