@@ -21,7 +21,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -70,8 +70,8 @@ public class Usuario implements Serializable, UserDetails{
 	@Column(unique=true)
     private String username;
     
-    @JsonManagedReference
-	@OneToMany(mappedBy = "usuario", targetEntity = Car.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonBackReference
+	@OneToMany(mappedBy = "usuario", targetEntity = Car.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Car> cars;
     
 	 @Lob

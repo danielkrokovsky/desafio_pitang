@@ -47,8 +47,6 @@ public class Car implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="usuario_id")
-	@JsonBackReference
-	@NotNull
 	private Usuario usuario;
 	
 	 @Lob

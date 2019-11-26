@@ -30,18 +30,38 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
+		/*
 		http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()).and().csrf()
 				.disable().authorizeRequests()
-				.antMatchers(HttpMethod.GET, SecurityConstants.SIGN_UP_URL).permitAll()
+				.antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL).permitAll()
 				.antMatchers("/users**")
 				.permitAll()
-				.antMatchers("/users**")
+				.antMatchers("/login")
 				.permitAll()
 				.antMatchers("/signin")
 				.permitAll()
-				.antMatchers("/cars**").hasRole("USER").and()
+				.antMatchers("/cars**")
+				.authenticated().anyRequest().authenticated()
+				.antMatchers("/cars/*")
+				.authenticated().anyRequest().authenticated()
+				.and()
 				.addFilter(new JWTAuthenticationFilter(authenticationManager()))
 				.addFilter(new JWTAuthorizationFilter(authenticationManager(), customUserDetailService));
+		*/
+		
+		
+		http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()).and().csrf()
+		.disable().authorizeRequests().antMatchers("/login","/users**","/signin",SecurityConstants.SIGN_UP_URL).permitAll()
+		.anyRequest()
+		.authenticated()
+		.and().addFilter(new JWTAuthenticationFilter(authenticationManager()))
+		.addFilter(new JWTAuthorizationFilter(authenticationManager(), customUserDetailService));
+		
+		
+		
+		
+		
+		
 	}
 
 	@Override

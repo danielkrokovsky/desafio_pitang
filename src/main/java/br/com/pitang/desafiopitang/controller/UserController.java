@@ -106,7 +106,6 @@ public class UserController {
 	}
 
 	@DeleteMapping(path = "/{id}")
-	@CrossOrigin(origins = "http://localhost:8080/api/**")
 	public ResponseEntity<?> removeById(@PathVariable Long id) {
 
 		repository.deleteById(id);

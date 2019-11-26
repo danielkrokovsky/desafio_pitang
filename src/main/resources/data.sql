@@ -1,5 +1,4 @@
 /*
-
 INSERT INTO USUARIO (ID,birthday,email,FIRST_NAME,LAST_NAME,USERNAME,password,phone) VALUES (1,'2017-12-04','commodo.ipsum.Suspendisse@diam.ca','Thaddeus','Cervantes','daniel','$2a$10$mjxmujQv9afkRjw9pM2qtO2I1Fc7RdX/yo8Ubw0GVrIUgfkIFmpDC','(24)841444315');
 INSERT INTO USUARIO (ID,birthday,email,FIRST_NAME,LAST_NAME,USERNAME,password,phone) VALUES (2,'1913-02-14','imperdiet.ullamcorper@eu.net','Declan','Bishop','Cody','$2a$10$mjxmujQv9afkRjw9pM2qtO2I1Fc7RdX/yo8Ubw0GVrIUgfkIFmpDC','(52)983961222');
 INSERT INTO USUARIO (ID,birthday,email,FIRST_NAME,LAST_NAME,USERNAME,password,phone) VALUES (3,'1902-08-11','adipiscing@eget.ca','Josiah','Hale','Ifeoma','$2a$10$mjxmujQv9afkRjw9pM2qtO2I1Fc7RdX/yo8Ubw0GVrIUgfkIFmpDC','(72)899715484');

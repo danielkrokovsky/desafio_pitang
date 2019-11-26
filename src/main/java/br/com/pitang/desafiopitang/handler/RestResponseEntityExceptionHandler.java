@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import br.com.pitang.desafiopitang.exception.CarNotFoundException;
 import br.com.pitang.desafiopitang.exception.UsuarioEmailException;
 import br.com.pitang.desafiopitang.exception.UsuarioLoginException;
 import br.com.pitang.desafiopitang.model.MessageError;
@@ -75,5 +76,16 @@ public class RestResponseEntityExceptionHandler
 		
 		return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.CONFLICT, request);
 	}
+	
+	@ExceptionHandler(value = {CarNotFoundException.class})
+	protected ResponseEntity<Object> handlelicensePlate(CarNotFoundException ex, WebRequest request) {
+	
+		String msg = env.getProperty("msg.car.nao.econtrado.exception");
+		
+		MessageError error = new MessageError(msg, HttpStatus.CONFLICT.value());
+		
+		return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+	}
+
 
 }
