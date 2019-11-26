@@ -9,7 +9,7 @@ ESTÓRIAS DE USUÁRIO
             <br>1.2. E-mail já existente: retornar um erro com a mensagem “Email already exists”;
             <br>1.3. Login já existente: retornar um erro com a mensagem “Login already exists”;
             <br>1.4. Campos inválidos: retornar um erro com a mensagem “Invalid fields”;
-            <br>1.5. Campos não preenchidos: retornar um erro com a mensagem “Missing fields.<br>
+            <br>1.5. Campos não preenchidos: retornar um erro com a mensagem “Missing fields.<br><br>
 
 
 2. [x] - API de Carros
@@ -19,13 +19,20 @@ ESTÓRIAS DE USUÁRIO
             <br>2. Token expirado: retornar um erro com a mensagem “Unauthorized - invalid session”;
             <br>3. Placa já existente: retornar um erro com a mensagem “License plate already exists”;
             <br>4. Campos inválidos: retornar um erro com a mensagem “Invalid fields”;
-            <br>5. Campos não preenchidos: retornar um erro com a mensagem “Missing fields<br>
+            <br>5. Campos não preenchidos: retornar um erro com a mensagem “Missing fields<br><br>
 
 
 
 
-2. [x] - API de Carros
-2. [x] - API de Carros
+3. [x] - Disponibilizar a API rodando em algum host (Heroku)<br>
+
+
+4. [x] - Criar um repositório público git (Github)<br>
+
+
+
+
+
 2. [x] - API de Carros
 2. [x] - API de Carros
 2. [x] - API de Carros
