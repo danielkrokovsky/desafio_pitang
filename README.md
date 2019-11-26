@@ -50,3 +50,10 @@ ESTÓRIAS DE USUÁRIO
 5. [x] - Criação de rota para upload da fotografia do usuário e do carro<br>
 
 6. [x] - Senha deve ser criptografada
+
+
+
+# Build| Deploy | Run
+
+1. Para build do projeto deve-se ter instalado na máquina o Maven.
+  executar o comando <blockquote>mvn clean package</blockquote>
