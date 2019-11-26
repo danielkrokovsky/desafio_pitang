@@ -57,3 +57,29 @@ ESTÓRIAS DE USUÁRIO
 
 1. Para build do projeto deve-se ter instalado na máquina o Maven.
   executar o comando <blockquote>mvn clean package</blockquote>
+  
+2. Para executar do projeto deve-se acessar a pasta raiz do projeto.
+  executar o comando <blockquote>mvn spring-boot:run</blockquote>
+  
+3. Para inicar o uso da api deve-se criar primeiramente um usuário.
+  Usar algum programa para fazer requisições ao endpoint (Postmen) e fazer uma requisição POST para o endpoint 
+  http://localhost:8080/api/users passando o json
+  <blockquote>
+    {
+       "firstName":"Hello",
+       "lastName":"World",
+       "email":"hello@world.com",
+       "birthday":"1990-05-01",
+       "username":"hello.world",
+       "password":"h3ll0",
+       "phone":"988888888",
+       "cars":[
+          {
+             "year":2018,
+             "licensePlate":"PDV-0625",
+             "model":"Audi",
+             "color":"White"
+          }
+       ]
+    }
+  </blockquote>
