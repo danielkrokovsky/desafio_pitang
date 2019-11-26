@@ -6,14 +6,7 @@ ESTÓRIAS DE USUÁRIO
 
     <blockquote>Criar os Endpoints para a api de Usuário</blockquote>
 
-            1.1. /api/me - Retornar as informações do usuário logado (firstName, lastName, email, birthday,
-                 login,phone, cars) + createdAt (data da criação do usuário) + lastLogin (data da última vez 
-                que o usuário realizou login).
-            1.2. /api/cars Listar todos os carros do usuário logado 
-            1.3. /api/cars Cadastrar um novo carro para o usuário logado 
-            1.4. /api/cars/{id} Buscar um carro do usuário logado pelo id 
-            1.5. /api/cars/{id} Remover um carro do usuário logado pelo id 
-            1.6. /api/cars/{id} Atualizar um carro do usuário logado pelo i<br>
+            1.1. ydtydtldtuldtuldtuldtlud
 
       <blockquote>Tratamento de Erros</blockquote>
             1.1. Login inexistente ou senha inválida: retornar um erro com a mensagem “Invalid login or password”;
