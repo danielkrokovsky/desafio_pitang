@@ -14,7 +14,7 @@ public class DesafiopitangApplication {
 		SpringApplication.run(DesafiopitangApplication.class, args);
 	}
 	
-	/*
+	
 	@Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -29,5 +29,5 @@ public class DesafiopitangApplication {
         config.addAllowedMethod("DELETE");
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
-    }*/
+    }
 }

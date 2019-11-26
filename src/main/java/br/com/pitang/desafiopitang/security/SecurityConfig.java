@@ -35,6 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, SecurityConstants.SIGN_UP_URL).permitAll()
 				.antMatchers("/users**")
 				.permitAll()
+				.antMatchers("/users**")
+				.permitAll()
 				.antMatchers("/signin")
 				.permitAll()
 				.antMatchers("/cars**").hasRole("USER").and()

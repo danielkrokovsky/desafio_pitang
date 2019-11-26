@@ -1,3 +1,5 @@
+/*
+
 INSERT INTO USUARIO (ID,birthday,email,FIRST_NAME,LAST_NAME,USERNAME,password,phone) VALUES (1,'2017-12-04','commodo.ipsum.Suspendisse@diam.ca','Thaddeus','Cervantes','daniel','$2a$10$mjxmujQv9afkRjw9pM2qtO2I1Fc7RdX/yo8Ubw0GVrIUgfkIFmpDC','(24)841444315');
 INSERT INTO USUARIO (ID,birthday,email,FIRST_NAME,LAST_NAME,USERNAME,password,phone) VALUES (2,'1913-02-14','imperdiet.ullamcorper@eu.net','Declan','Bishop','Cody','$2a$10$mjxmujQv9afkRjw9pM2qtO2I1Fc7RdX/yo8Ubw0GVrIUgfkIFmpDC','(52)983961222');
 INSERT INTO USUARIO (ID,birthday,email,FIRST_NAME,LAST_NAME,USERNAME,password,phone) VALUES (3,'1902-08-11','adipiscing@eget.ca','Josiah','Hale','Ifeoma','$2a$10$mjxmujQv9afkRjw9pM2qtO2I1Fc7RdX/yo8Ubw0GVrIUgfkIFmpDC','(72)899715484');
@@ -9,7 +11,7 @@ INSERT INTO USUARIO (ID,birthday,email,FIRST_NAME,LAST_NAME,USERNAME,password,ph
 INSERT INTO USUARIO (ID,birthday,email,FIRST_NAME,LAST_NAME,USERNAME,password,phone) VALUES (9,'1977-11-10','gravida@liberoat.ca','Melanie','Hicks','Ronan','$2a$10$mjxmujQv9afkRjw9pM2qtO2I1Fc7RdX/yo8Ubw0GVrIUgfkIFmpDC','(81)754772515');
 INSERT INTO USUARIO (ID,birthday,email,FIRST_NAME,LAST_NAME,USERNAME,password,phone) VALUES (10,'1956-10-16','quis.lectus@laoreetlectus.com','Connor','Sharpe','Harper','$2a$10$mjxmujQv9afkRjw9pM2qtO2I1Fc7RdX/yo8Ubw0GVrIUgfkIFmpDC','(55)289881419');
 
-/*
+
 INSERT INTO CAR (ID,COLOR,LICENSE_PLATE,MODEL,YEAR,USUARIO_ID) VALUES (1,'orange1','ysryk','In','1953',1);
 INSERT INTO CAR (ID,COLOR,LICENSE_PLATE,MODEL,YEAR,USUARIO_ID) VALUES (2,'blue2','fhxhf.','libero','1976',2);
 INSERT INTO CAR (ID,COLOR,LICENSE_PLATE,MODEL,YEAR,USUARIO_ID) VALUES (3,'green3','xfh','tellus,','1951',9);
