@@ -2,6 +2,8 @@ package br.com.pitang.desafiopitang.util;
 
 import java.io.Serializable;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
@@ -47,4 +49,17 @@ public class JwtTokenUtil implements Serializable {
         }
         return claims;
     }
+    
+    public String getUserFronToken(HttpServletRequest request) {
+		
+		String token = request.getHeader(SecurityConstants.HEADER_STRING);
+		
+		if(token != null) {
+			token = token.replace("Bearer ", "");
+		}
+		
+        String username = getUsernameFromToken(token);
+        
+        return username;
+	}
 }

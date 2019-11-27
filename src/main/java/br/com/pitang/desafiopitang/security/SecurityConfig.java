@@ -2,7 +2,6 @@ package br.com.pitang.desafiopitang.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -29,38 +28,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
-		/*
-		http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()).and().csrf()
-				.disable().authorizeRequests()
-				.antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL).permitAll()
-				.antMatchers("/users**")
-				.permitAll()
-				.antMatchers("/login")
-				.permitAll()
-				.antMatchers("/signin")
-				.permitAll()
-				.antMatchers("/cars**")
-				.authenticated().anyRequest().authenticated()
-				.antMatchers("/cars/*")
-				.authenticated().anyRequest().authenticated()
-				.and()
-				.addFilter(new JWTAuthenticationFilter(authenticationManager()))
-				.addFilter(new JWTAuthorizationFilter(authenticationManager(), customUserDetailService));
-		*/
-		
-		
+	
 		http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()).and().csrf()
 		.disable().authorizeRequests().antMatchers("/login","/users**","/users/**","/signin",SecurityConstants.SIGN_UP_URL).permitAll()
 		.anyRequest()
 		.authenticated()
 		.and().addFilter(new JWTAuthenticationFilter(authenticationManager()))
 		.addFilter(new JWTAuthorizationFilter(authenticationManager(), customUserDetailService));
-		
-		
-		
-		
-		
 		
 	}
 

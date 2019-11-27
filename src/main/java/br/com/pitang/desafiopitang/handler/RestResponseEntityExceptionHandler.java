@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import br.com.pitang.desafiopitang.exception.CarNotFoundException;
 import br.com.pitang.desafiopitang.exception.UsuarioEmailException;
 import br.com.pitang.desafiopitang.exception.UsuarioLoginException;
+import br.com.pitang.desafiopitang.exception.UsuarioNotFoundException;
 import br.com.pitang.desafiopitang.model.MessageError;
 
 @ControllerAdvice
@@ -83,6 +84,16 @@ public class RestResponseEntityExceptionHandler
 		String msg = env.getProperty("msg.car.nao.econtrado.exception");
 		
 		MessageError error = new MessageError(msg, HttpStatus.CONFLICT.value());
+		
+		return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+	}
+	
+	@ExceptionHandler(value = {UsuarioNotFoundException.class})
+	protected ResponseEntity<Object> handlelicensePlate(UsuarioNotFoundException ex, WebRequest request) {
+	
+		String msg = env.getProperty("msg.user.nao.econtrado.exception");
+		
+		MessageError error = new MessageError(msg, HttpStatus.BAD_REQUEST.value());
 		
 		return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}

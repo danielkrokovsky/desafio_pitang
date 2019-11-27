@@ -30,7 +30,6 @@ import br.com.pitang.desafiopitang.model.CarroDTO;
 import br.com.pitang.desafiopitang.model.Usuario;
 import br.com.pitang.desafiopitang.repository.CarRepository;
 import br.com.pitang.desafiopitang.repository.UserRepository;
-import br.com.pitang.desafiopitang.security.SecurityConstants;
 import br.com.pitang.desafiopitang.util.JwtTokenUtil;
 
 @RestController
@@ -92,7 +91,7 @@ public class CarController {
 	@PostMapping()
 	public ResponseEntity<Car> save(@Valid @RequestBody Car car, HttpServletRequest request) {
 		
-		String user = getUserFronToken(request);
+		String user = jwtTokenUtil.getUserFronToken(request);
 		
 		Usuario us = userRepository.findByLogin(user);
 		
@@ -123,7 +122,7 @@ public class CarController {
 	@PutMapping("/{id}")
 	public ResponseEntity<Car> update(@PathVariable Long id,@Valid @RequestBody Car car, HttpServletRequest request) {
 
-		String user = getUserFronToken(request);
+		String user = jwtTokenUtil.getUserFronToken(request);
 		
 		Car car1 = repository.findByCarIdUsuario(user, id);
 		
@@ -151,7 +150,7 @@ public class CarController {
 	@GetMapping()
 	public ResponseEntity<List<Car>> find(HttpServletRequest request) {
 		
-		String user = getUserFronToken(request);
+		String user = jwtTokenUtil.getUserFronToken(request);
 
 		Iterable<Car> iterable = repository.findByUsuario(user);
 		List<Car> result = StreamSupport.stream(iterable.spliterator(), false).collect(Collectors.toList());
@@ -175,7 +174,7 @@ public class CarController {
 	@GetMapping("/{id}")
 	public ResponseEntity<?> findById(@PathVariable Long id, HttpServletRequest request) {
 
-		String user = getUserFronToken(request);
+		String user = jwtTokenUtil.getUserFronToken(request);
 		
 		Car car = repository.findByCarIdUsuario(user, id);
 		
@@ -198,7 +197,7 @@ public class CarController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> removeById(@PathVariable Long id, HttpServletRequest request) {
 
-		String user = getUserFronToken(request);
+		String user = jwtTokenUtil.getUserFronToken(request);
 		
 		Car c = repository.findByCarIdUsuario(user, id);
 		
@@ -213,16 +212,5 @@ public class CarController {
 	
 	
 	
-	private String getUserFronToken(HttpServletRequest request) {
-		
-		String token = request.getHeader(SecurityConstants.HEADER_STRING);
-		
-		if(token != null) {
-			token = token.replace("Bearer ", "");
-		}
-		
-        String username = jwtTokenUtil.getUsernameFromToken(token);
-        
-        return username;
-	}
+	
 }
