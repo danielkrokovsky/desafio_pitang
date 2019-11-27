@@ -83,3 +83,19 @@ ESTÓRIAS DE USUÁRIO
        ]
     }
   </blockquote>
+  
+  
+  
+  
+  
+  # Integração com SonarQube;
+  
+  1. Na pasta raiz do projeto existe um arquivo docker-compose.yml, que é utilizado para executar uma imagem do SonarQube. Para executar, deve-se ter instalado na máquina o docker.
+  
+  2. Após instalado o docker, deve ir na pasta onde está o arquivo docker-compose.yml e executar o comando:
+  <blockquote> docker-compose up </blockquote>
+  
+  3. Após finalizar a execução acima, deve-se exeutar o comando:
+  <blockquote>mvn sonar:sonar -Dsonar.host.url=http://172.20.0.3:9000</blockquote>
+  
+  4. Após finalizar o build, acesse via browser, o endereço http://172.20.0.3:9000, utilizar o login admin e a senha admin.
