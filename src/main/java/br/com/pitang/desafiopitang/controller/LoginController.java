@@ -28,7 +28,7 @@ public class LoginController {
 	 * @param user
 	 * @return
 	 * 
-	 * Para essa requisição deverá ser passado para uma requisição POST, um json nesse formato {"username":"daniel", "password":"123456"}.
+	 * Para essa requisição deverá ser passado para uma requisição POST, um json nesse formato {"username":"usuario cadastrado", "password":"senha não criptografada"}.
 	 *  Caso o usuário exista será retornado um token válido
 	 * 
 	 */	
@@ -52,6 +52,14 @@ public class LoginController {
 		return ResponseEntity.ok(SecurityConstants.TOKEN_PREFIX.concat(token));
 		
 	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 * 
+	 * Passar um token ) via header Authorization, e as informações do usuário deverá ser retornado
+	 */
 	
 	@PostMapping("/me")
 	public ResponseEntity<UsuarioDTO> me(HttpServletRequest request) {
