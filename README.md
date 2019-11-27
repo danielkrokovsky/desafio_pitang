@@ -49,7 +49,9 @@ ESTÓRIAS DE USUÁRIO
 
 5. [x] - Criação de rota para upload da fotografia do usuário e do carro<br>
 
-6. [x] - Senha deve ser criptografada
+6. [x] - Senha deve ser criptografada<br>
+
+7. [x] - Documentação (Javadoc)<br>
 
 
 
@@ -84,10 +86,6 @@ ESTÓRIAS DE USUÁRIO
     }
   </blockquote><br>
 
-
-[x] - Documentação (Javadoc);<br>
-  
-  
   
   # Integração com SonarQube;
   
