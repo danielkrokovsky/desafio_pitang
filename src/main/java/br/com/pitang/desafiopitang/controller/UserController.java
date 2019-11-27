@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,7 +39,18 @@ public class UserController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
-	
+	/**
+	 * 
+	 * @param request
+	 * @param files
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 * 
+	 * Para executar upload de fotos do usuário, deve-ser fazer uma requisição POST para o endereço
+	 * http://{host}:8080/users/{id do usuario}/upload. No body deve-se passar o uma key com nome "files" 
+	 * e passar um arquivo.
+	 */
 	@PostMapping(value = "{id}/upload", headers = "Content-Type= multipart/form-data")
 	public ResponseEntity<?> anexoUpload(HttpServletRequest request, @NotNull @RequestParam("files") MultipartFile[] files,
 			@PathVariable(name = "id") Long id) throws Exception {
@@ -58,6 +68,16 @@ public class UserController {
 		return ResponseEntity.ok().body(null);
 	}
 
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 * 
+	 * Para salvar um usuário deve-se passar um json com todos os campos preenchidos.
+	 * Caso já exista algum usuário com o email ou o username informado, uma messagem de erro deverá ser retornada.
+	 * 
+	 */	
+	
 	@PostMapping()
 	public ResponseEntity<Usuario> save(@Valid @RequestBody Usuario user) {
 		
@@ -79,6 +99,17 @@ public class UserController {
 		return new ResponseEntity<Usuario>(user, HttpStatus.ACCEPTED);
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @param user
+	 * @return
+	 * 
+	 * Para alterar um usuário todos os dados devem ser passados.
+	 * Caso já exista algum outro usuário com o email ou o username informado, uma messagem de erro deverá ser retornada.
+	 * 
+	 */
+
 	@PutMapping("/{id}")
 	public ResponseEntity<Usuario> update(@PathVariable Long id,@Valid @RequestBody Usuario user) {
 
@@ -86,6 +117,13 @@ public class UserController {
 		
 		return new ResponseEntity<Usuario>(user2, HttpStatus.OK);
 	}
+	
+	/**
+	 * 
+	 * @return
+	 * 
+	 * Retorna todos os usuário
+	 */
 
 	@GetMapping()
 	public ResponseEntity<List<Usuario>> find() {
@@ -96,6 +134,14 @@ public class UserController {
 
 		return new ResponseEntity<List<Usuario>>(result, HttpStatus.OK);
 	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * 
+	 * Busca um usuário pelo ID
+	 */
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Usuario> findById(@PathVariable Long id) {
@@ -105,6 +151,14 @@ public class UserController {
 		return new ResponseEntity<Usuario>(user.get(), HttpStatus.OK);
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * 
+	 * Remove um usuário pelo ID
+	 */
+	
 	@DeleteMapping(path = "/{id}")
 	public ResponseEntity<?> removeById(@PathVariable Long id) {
 

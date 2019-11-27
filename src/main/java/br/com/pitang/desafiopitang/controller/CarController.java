@@ -47,6 +47,20 @@ public class CarController {
 	private UserRepository userRepository;
 		
 
+	/**
+	 * 
+	 * @param request
+	 * @param files
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 * 
+	 * Um Token deverá ser passado para realizar a consulta.
+	 * 
+	 * Para executar upload de fotos, deve-ser fazer uma requisição POST para o endereço
+	 * http://{host}:8080/cars/{id do carro}/upload, no body deve-se passar o uma chave com nome "files" e passar um arquivo.
+	 * 
+	 */
 	@PostMapping(value = "/{id}/upload", headers = "Content-Type= multipart/form-data")
 	public ResponseEntity<?> anexoUpload(HttpServletRequest request, @NotNull @RequestParam("files") MultipartFile[] files,
 			@PathVariable(name = "id") Long id) throws Exception {
@@ -64,7 +78,17 @@ public class CarController {
 		return ResponseEntity.ok().body(carOpt);
 	}
 
-
+	/**
+	 * 
+	 * @param car
+	 * @param request
+	 * @return
+	 * 
+	 * Um Token deverá ser passado para realizar a consulta.
+	 * 
+	 *  Para criar um carro deve-se passar um Json com os dados do carro e usuário. 
+	 *  Um erro deve ocorrer caso já exista um carro com a mesma placa informada.
+	 */
 	@PostMapping()
 	public ResponseEntity<Car> save(@Valid @RequestBody Car car, HttpServletRequest request) {
 		
@@ -83,6 +107,19 @@ public class CarController {
 		return new ResponseEntity<Car>(car3, HttpStatus.ACCEPTED);
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @param car
+	 * @param request
+	 * @return
+	 * 
+	 * Um Token deverá ser passado para realizar a consulta.
+	 * 
+	 * Para atualizar um carro deve-se passar um Json com os dados do carro. 
+	 *  Um erro deverá ocorrer caso já exista um carro com a mesma placa informada.
+	 */
+	
 	@PutMapping("/{id}")
 	public ResponseEntity<Car> update(@PathVariable Long id,@Valid @RequestBody Car car, HttpServletRequest request) {
 
@@ -99,6 +136,17 @@ public class CarController {
 		
 		return new ResponseEntity<Car>(car2, HttpStatus.ACCEPTED);
 	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 * 
+	 * Um Token deverá ser passado para realizar a consulta.
+	 * 
+	 * A consulta retorna apenas os carros do usuário logado.
+	 * 
+	 */
 
 	@GetMapping()
 	public ResponseEntity<List<Car>> find(HttpServletRequest request) {
@@ -112,6 +160,17 @@ public class CarController {
 
 		return new ResponseEntity<List<Car>>(cardto.getCarros(), HttpStatus.OK);
 	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @param request
+	 * @return
+	 * 
+	 * Um Token deverá ser passado para realizar a consulta.
+	 * 
+	 * Busca um carro pelo id informado. A consulta retorna apenas os carros do usuário logado
+	 */
 
 	@GetMapping("/{id}")
 	public ResponseEntity<?> findById(@PathVariable Long id, HttpServletRequest request) {
@@ -124,6 +183,17 @@ public class CarController {
 
 		return new ResponseEntity<CarroDTO>(cardto, HttpStatus.OK);
 	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @param request
+	 * @return
+	 * 
+	 * Um Token deverá ser passado para realizar a consulta.
+	 * 
+	 * Remove um carro pelo id informado. A remoçao será apenas se o usuário logado possuir  esse carro
+	 */
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> removeById(@PathVariable Long id, HttpServletRequest request) {
@@ -139,6 +209,9 @@ public class CarController {
 
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
+	
+	
+	
 	
 	private String getUserFronToken(HttpServletRequest request) {
 		

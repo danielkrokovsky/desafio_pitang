@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		
 		http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()).and().csrf()
-		.disable().authorizeRequests().antMatchers("/login","/users**","/signin",SecurityConstants.SIGN_UP_URL).permitAll()
+		.disable().authorizeRequests().antMatchers("/login","/users**","/users/**","/signin",SecurityConstants.SIGN_UP_URL).permitAll()
 		.anyRequest()
 		.authenticated()
 		.and().addFilter(new JWTAuthenticationFilter(authenticationManager()))
